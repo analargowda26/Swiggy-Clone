@@ -1,57 +1,63 @@
-import React, { useState } from 'react'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Auth.css";
 
-const Signup = () => {
+function Signup() {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Signup form submitted", { name, email, phone, password });
+  };
+
   return (
-    <>
-      <div>Signup</div>
-      <div>
-        <form>
-          <label>Name</label>
-          <input 
-            type='text' 
-            placeholder='Name' 
-            required 
-            value={name} 
-            onChange={(e) => setName(e.target.value)} 
-          />
+    <div className="auth-container">
+      <h2>Create Account</h2>
 
-          <label>Phone Number</label>
-          <input 
-            type='number' 
-            placeholder='Phone Number' 
-            required 
-            value={phone} 
-            onChange={(e) => setPhone(e.target.value)} 
-          />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Phone Number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Sign Up</button>
+      </form>
 
-          <label>Email</label>
-          <input 
-            type='email' 
-            placeholder='Email' 
-            required 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-          />
-
-          <label>Password</label>
-          <input 
-            type='password' 
-            placeholder='Password' 
-            required 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-          />
-
-          <button type='submit'>Submit</button>
-        </form>
-      </div>
-    </>
+      <p className="auth-link">
+        Already have an account? <Link to="/login">Login</Link>
+      </p>
+    </div>
   );
-};
+}
 
 export default Signup;

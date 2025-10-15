@@ -1,57 +1,45 @@
-import React, { useState } from 'react'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Auth.css";
 
-const Login = () => {
-  const [phone, setPhone] = useState("");
+function Login() {
   const [email, setEmail] = useState("");
-  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Login form submitted", { email, password });
+  };
+
   return (
-    <>
-      <div>Login Page</div>
-      <div>
-        <form>
-          <label>Phone Number</label>
-          <input 
-            type='number' 
-            placeholder='Phone Number' 
-            required 
-            value={phone} 
-            onChange={(e) => setPhone(e.target.value)} 
-          />
+    <div className="auth-container">
+      <h2>Login</h2>
 
-          <label>Email</label>
-          <input 
-            type='email' 
-            placeholder='Email' 
-            required 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-          />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
 
-          <label>Login</label>
-          <input 
-            type='text' 
-            placeholder='Login' 
-            required 
-            value={login} 
-            onChange={(e) => setLogin(e.target.value)} 
-          />
-
-          <label>Password</label>
-          <input 
-            type='password' 
-            placeholder='Password' 
-            required 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-          />
-
-          <button type='submit'>Submit</button>
-        </form>
-      </div>
-    </>
+      <p className="auth-link">
+        Don't have an account? <Link to="/signup">Sign Up</Link>
+      </p>
+    </div>
   );
-};
+}
 
 export default Login;

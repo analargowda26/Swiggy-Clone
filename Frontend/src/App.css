@@ -1,0 +1,13 @@
+.app-nav{
+        padding:20px;
+        background-color: orange;
+        display: flex;
+        justify-content: space-between ;
+        align-content:center;
+}
+
+.auth-details{
+    padding:10px;
+    justify-content: space-between;
+    align-content: space-between;
+}

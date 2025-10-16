@@ -6,44 +6,48 @@ import Signup from './pages/Signup';
 import './App.css';
 
 function App() {
-  const [isloggedin, setIsloggedin] = useState(false);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <Router>
-      <div className="app-nav">
-        <h1>Swiggy Clone</h1>
-
+      <div className="app">
         <nav className="app-nav">
-          {!isloggedin ? (
+          <h1>Swiggy Clone</h1>
+          {!isLoggedIn?(
+              <>
+                <div className="auth-details">
+                  <Link to ="/login">Login</Link>
+                  <Link to ="/signup">Signup</Link>
+                </div>
+              </>
+          ):(
             <>
             <div className="auth-details">
-              <Link to="/login" >Login</Link>
-              <Link to="/signup">Signup</Link>
-              </div>
+              <Link to ="/">Home</Link>
+              <button onClick={() => {
+                setIsLoggedIn(false)
+
+              }}
+              >
+              Logout</button>
+            </div>
             </>
-          ) : (
-            <>
-            <Link to="/">Home</Link>
-            <button
-             onClick={() => {
-              setIsloggedin(false)
-              }
-              }>
-            Logout
-            </button>
-            </>
+           
           )}
         </nav>
-        </div>
-
-        <Routes>
-          <Route path="/" element={isloggedin ? <HomePage />: <login/>} />
-          <Route path="/login" 
-          element={<Login setIsloggedin = {setIsloggedin} />} 
-          />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
-      
+      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            isLoggedIn ? <HomePage /> : <Login setIsLoggedIn={setIsLoggedIn} />
+          }
+        />
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
     </Router>
   );
 }

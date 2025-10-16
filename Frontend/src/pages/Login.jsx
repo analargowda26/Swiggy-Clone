@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
 
-function Login({setisloggedin}) {
+function Login({setIsLoggedIn}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,7 +11,7 @@ function Login({setisloggedin}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Login form submitted", { email, password });
-    setisloggedin(true);
+    setIsLoggedIn(true);
     navigate("/")
   };
 

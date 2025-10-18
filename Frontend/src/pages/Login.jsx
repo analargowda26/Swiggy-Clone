@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {loginAPI} from "../services/api";
 import "./Auth.css";
 
 function Login({setIsLoggedIn}) {
@@ -8,12 +9,19 @@ function Login({setIsLoggedIn}) {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Login form submitted", { email, password });
-    setIsLoggedIn(true);
-    navigate("/")
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+      const credentials = { email, password };
+      const data = await loginAPI(credentials);
+      console.log("Login successful:", data);
+      setIsLoggedIn(true);
+      navigate("/");
+    } catch (error) {
+      console.error("Error:", error);
+      alert(error.response?.data?.message || "Login failed. Please try again.");
+    }
+};
 
   return (
     <div className="auth-container">

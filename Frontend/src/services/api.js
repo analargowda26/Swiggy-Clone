@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const API_URL = "http://localhost:5000/api"
 
 
@@ -18,4 +19,9 @@ export const signupAPI = async (userData)=>{
 export const loginAPI = async (credintials)=>{
     const response =  await api.post('/auth/login', credintials);
     return response
+}
+
+export const getRestaurantsAPI = async ()=>{
+    const response =  await api.get('/restaurants');
+    return response.data.restaurants;
 }

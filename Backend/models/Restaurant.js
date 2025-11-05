@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const restaurantSchema = new mongoose.Schema(
   {
     name: {
@@ -24,10 +25,10 @@ const restaurantSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    foodType :{
-        type: String,
-        enum : ['veg','non-veg'],
-        required: true,
+    foodType: {
+      type: String,
+      enum: ["veg", "non-veg"],
+      required: true,
     },
     address: {
       type: String,
@@ -38,13 +39,5 @@ const restaurantSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
 module.exports = mongoose.model("Restaurant", restaurantSchema);
-
-
-
-
-
-
-
-
-

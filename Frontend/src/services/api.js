@@ -77,3 +77,15 @@ export const getOrderByIdAPI = async (orderId) => {
   const response = await api.get(`/orders/${orderId}`);
   return response.data;
 };
+
+// ⭐ GET Reviews
+export const getReviewsAPI = async (id) => {
+  const res = await axios.get(`${API_URL}/restaurants/${id}/reviews`);
+  return res.data.reviews;
+};
+
+// ⭐ POST Review
+export const addReviewAPI = async (id, data) => {
+  const res = await axios.post(`${API_URL}/restaurants/${id}/reviews`, data);
+  return res.data;
+};
